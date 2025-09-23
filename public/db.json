@@ -1,0 +1,308 @@
+{
+  "categorias": [
+    {
+      "id": 1,
+      "nome": "Bolos",
+      "produtos": [
+        {
+          "id": 101,
+          "idCategoria": 1,
+          "nome": "Bolo de Chocolate",
+          "preco": 45.0,
+          "imagem": "https://placehold.co/600x400/4B2E2E/FFFFFF?text=Bolo+Chocolate"
+        },
+        {
+          "id": 102,
+          "idCategoria": 1,
+          "nome": "Bolo de Morango",
+          "preco": 50.0,
+          "imagem": "https://placehold.co/600x400/FF4D6D/FFFFFF?text=Bolo+Morango"
+        },
+        {
+          "id": 103,
+          "idCategoria": 1,
+          "nome": "Bolo Red Velvet",
+          "preco": 65.0,
+          "imagem": "https://placehold.co/600x400/8B0000/FFFFFF?text=Bolo+Red+Velvet"
+        },
+        {
+          "id": 104,
+          "idCategoria": 1,
+          "nome": "Bolo de Cenoura",
+          "preco": 40.0,
+          "imagem": "https://placehold.co/600x400/FF8C00/000000?text=Bolo+Cenoura"
+        },
+        {
+          "id": 105,
+          "idCategoria": 1,
+          "nome": "Bolo Prestígio",
+          "preco": 55.0,
+          "imagem": "https://placehold.co/600x400/3E3E3E/FFFFFF?text=Bolo+Prestigio"
+        },
+        {
+          "id": 106,
+          "idCategoria": 1,
+          "nome": "Bolo Floresta Negra",
+          "preco": 70.0,
+          "imagem": "https://placehold.co/600x400/2F4F4F/FFFFFF?text=Floresta+Negra"
+        },
+        {
+          "id": 107,
+          "idCategoria": 1,
+          "nome": "Bolo de Coco",
+          "preco": 48.0,
+          "imagem": "https://placehold.co/600x400/FFFDD0/000000?text=Bolo+Coco"
+        },
+        {
+          "id": 108,
+          "idCategoria": 1,
+          "nome": "Bolo de Limão",
+          "preco": 42.0,
+          "imagem": "https://placehold.co/600x400/9ACD32/000000?text=Bolo+Limao"
+        },
+        {
+          "id": 109,
+          "idCategoria": 1,
+          "nome": "Bolo de Nozes",
+          "preco": 68.0,
+          "imagem": "https://placehold.co/600x400/DEB887/000000?text=Bolo+Nozes"
+        },
+        {
+          "id": 110,
+          "idCategoria": 1,
+          "nome": "Bolo de Maracujá",
+          "preco": 60.0,
+          "imagem": "https://placehold.co/600x400/FFD700/000000?text=Bolo+Maracuja"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "nome": "Brigadeiros",
+      "produtos": [
+        {
+          "id": 201,
+          "idCategoria": 2,
+          "nome": "Brigadeiro Tradicional",
+          "preco": 3.5,
+          "imagem": "https://placehold.co/600x400/6B4226/FFFFFF?text=Brigadeiro+Tradicional"
+        },
+        {
+          "id": 202,
+          "idCategoria": 2,
+          "nome": "Brigadeiro de Ninho",
+          "preco": 4.0,
+          "imagem": "https://placehold.co/600x400/FFFDD0/000000?text=Brigadeiro+Ninho"
+        },
+        {
+          "id": 203,
+          "idCategoria": 2,
+          "nome": "Brigadeiro de Pistache",
+          "preco": 5.0,
+          "imagem": "https://placehold.co/600x400/98FB98/000000?text=Brigadeiro+Pistache"
+        },
+        {
+          "id": 204,
+          "idCategoria": 2,
+          "nome": "Brigadeiro de Morango",
+          "preco": 4.5,
+          "imagem": "https://placehold.co/600x400/FF69B4/000000?text=Brigadeiro+Morango"
+        },
+        {
+          "id": 205,
+          "idCategoria": 2,
+          "nome": "Brigadeiro Meio Amargo",
+          "preco": 4.5,
+          "imagem": "https://placehold.co/600x400/2F4F4F/FFFFFF?text=Meio+Amargo"
+        },
+        {
+          "id": 206,
+          "idCategoria": 2,
+          "nome": "Brigadeiro de Café",
+          "preco": 4.8,
+          "imagem": "https://placehold.co/600x400/6F4E37/FFFFFF?text=Brigadeiro+Cafe"
+        },
+        {
+          "id": 207,
+          "idCategoria": 2,
+          "nome": "Brigadeiro de Maracujá",
+          "preco": 5.2,
+          "imagem": "https://placehold.co/600x400/FFD700/000000?text=Brigadeiro+Maracuja"
+        },
+        {
+          "id": 208,
+          "idCategoria": 2,
+          "nome": "Brigadeiro de Amendoim",
+          "preco": 4.7,
+          "imagem": "https://placehold.co/600x400/CD853F/000000?text=Brigadeiro+Amendoim"
+        },
+        {
+          "id": 209,
+          "idCategoria": 2,
+          "nome": "Brigadeiro de Uva",
+          "preco": 5.0,
+          "imagem": "https://placehold.co/600x400/800080/FFFFFF?text=Brigadeiro+Uva"
+        },
+        {
+          "id": 210,
+          "idCategoria": 2,
+          "nome": "Brigadeiro de Avelã",
+          "preco": 6.0,
+          "imagem": "https://placehold.co/600x400/8B4513/FFFFFF?text=Brigadeiro+Avella"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "nome": "Milkshakes",
+      "produtos": [
+        {
+          "id": 301,
+          "idCategoria": 3,
+          "nome": "Milkshake de Chocolate",
+          "preco": 18.0,
+          "imagem": "https://placehold.co/600x400/4B2E2E/FFFFFF?text=Milkshake+Chocolate"
+        },
+        {
+          "id": 302,
+          "idCategoria": 3,
+          "nome": "Milkshake de Morango",
+          "preco": 18.0,
+          "imagem": "https://placehold.co/600x400/FF4D6D/FFFFFF?text=Milkshake+Morango"
+        },
+        {
+          "id": 303,
+          "idCategoria": 3,
+          "nome": "Milkshake de Oreo",
+          "preco": 20.0,
+          "imagem": "https://placehold.co/600x400/2F2F2F/FFFFFF?text=Milkshake+Oreo"
+        },
+        {
+          "id": 304,
+          "idCategoria": 3,
+          "nome": "Milkshake de Nutella",
+          "preco": 22.0,
+          "imagem": "https://placehold.co/600x400/6F4E37/FFFFFF?text=Milkshake+Nutella"
+        },
+        {
+          "id": 305,
+          "idCategoria": 3,
+          "nome": "Milkshake de Baunilha",
+          "preco": 17.0,
+          "imagem": "https://placehold.co/600x400/FFFDD0/000000?text=Milkshake+Baunilha"
+        },
+        {
+          "id": 306,
+          "idCategoria": 3,
+          "nome": "Milkshake de Menta",
+          "preco": 19.0,
+          "imagem": "https://placehold.co/600x400/00FA9A/000000?text=Milkshake+Menta"
+        },
+        {
+          "id": 307,
+          "idCategoria": 3,
+          "nome": "Milkshake de Avelã",
+          "preco": 21.0,
+          "imagem": "https://placehold.co/600x400/8B4513/FFFFFF?text=Milkshake+Avella"
+        },
+        {
+          "id": 308,
+          "idCategoria": 3,
+          "nome": "Milkshake de Café",
+          "preco": 20.0,
+          "imagem": "https://placehold.co/600x400/6F4E37/FFFFFF?text=Milkshake+Cafe"
+        },
+        {
+          "id": 309,
+          "idCategoria": 3,
+          "nome": "Milkshake de Uva",
+          "preco": 19.0,
+          "imagem": "https://placehold.co/600x400/800080/FFFFFF?text=Milkshake+Uva"
+        },
+        {
+          "id": 310,
+          "idCategoria": 3,
+          "nome": "Milkshake de Caramelo",
+          "preco": 21.0,
+          "imagem": "https://placehold.co/600x400/D2691E/FFFFFF?text=Milkshake+Caramelo"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "nome": "Outros",
+      "produtos": [
+        {
+          "id": 401,
+          "idCategoria": 4,
+          "nome": "Cookie de Chocolate",
+          "preco": 6.0,
+          "imagem": "https://placehold.co/600x400/6B4226/FFFFFF?text=Cookie+Chocolate"
+        },
+        {
+          "id": 402,
+          "idCategoria": 4,
+          "nome": "Cupcake de Baunilha",
+          "preco": 8.0,
+          "imagem": "https://placehold.co/600x400/FFFDD0/000000?text=Cupcake+Baunilha"
+        },
+        {
+          "id": 403,
+          "idCategoria": 4,
+          "nome": "Brownie Tradicional",
+          "preco": 9.0,
+          "imagem": "https://placehold.co/600x400/3E2723/FFFFFF?text=Brownie+Tradicional"
+        },
+        {
+          "id": 404,
+          "idCategoria": 4,
+          "nome": "Donut Recheado",
+          "preco": 10.0,
+          "imagem": "https://placehold.co/600x400/FF69B4/000000?text=Donut+Recheado"
+        },
+        {
+          "id": 405,
+          "idCategoria": 4,
+          "nome": "Pão de Mel",
+          "preco": 7.0,
+          "imagem": "https://placehold.co/600x400/8B4513/FFFFFF?text=Pao+de+Mel"
+        },
+        {
+          "id": 406,
+          "idCategoria": 4,
+          "nome": "Macaron",
+          "preco": 5.0,
+          "imagem": "https://placehold.co/600x400/9370DB/FFFFFF?text=Macaron"
+        },
+        {
+          "id": 407,
+          "idCategoria": 4,
+          "nome": "Torta de Maçã",
+          "preco": 12.0,
+          "imagem": "https://placehold.co/600x400/FFDAB9/000000?text=Torta+Maca"
+        },
+        {
+          "id": 408,
+          "idCategoria": 4,
+          "nome": "Cheesecake",
+          "preco": 15.0,
+          "imagem": "https://placehold.co/600x400/F5DEB3/000000?text=Cheesecake"
+        },
+        {
+          "id": 409,
+          "idCategoria": 4,
+          "nome": "Petit Gateau",
+          "preco": 14.0,
+          "imagem": "https://placehold.co/600x400/2F4F4F/FFFFFF?text=Petit+Gateau"
+        },
+        {
+          "id": 410,
+          "idCategoria": 4,
+          "nome": "Palha Italiana",
+          "preco": 8.5,
+          "imagem": "https://placehold.co/600x400/A0522D/FFFFFF?text=Palha+Italiana"
+        }
+      ]
+    }
+  ]
+}
