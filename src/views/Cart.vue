@@ -18,6 +18,7 @@ interface Produto {
     title: string;
     price: number;
     image: string;
+    quant: number;
 }
 
 const produtos = ref<Produto[]>([]);
@@ -51,7 +52,7 @@ const removerProduto = (idProduto: number, msg: string) => {
         </h1>
         <section>
             <div class="containerProducts" v-if="produtos.length > 0">
-                <Product v-for="produto in produtos" :key="produto.id" :id="produto.id" :image="produto.image"
+                <Product v-for="produto in produtos" :key="produto.id" :id="produto.id" :image="produto.image" :quant="produto.quant"
                     :title="produto.title" :price="produto.price" :fundo="produto.id % 2 === 1 ? 'b1' : 'b2'"
                     @remover-produto="removerProduto" />
             </div>

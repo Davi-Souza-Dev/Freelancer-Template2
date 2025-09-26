@@ -76,9 +76,8 @@ const notificaton = (msg:string)=>{
       <div class="containerProducts">
         <h1>Produtos</h1>
         <Product v-for="produto in produtos" :key="produto.id" :id="produto.id" :price="produto.preco"
-        :id-categoria="produto.idCategoria"
+          :id-categoria="produto.idCategoria"
           :title="produto.nome" :image="produto.imagem" :fundo="Math.floor(produto.id / 2) % 2 === 0 ? 'b1' : 'b2'"  :checked="produtoChecked(produto.id)" @produto-status="notificaton"/>
-
       </div>
     </section>
     <Social />
@@ -134,9 +133,10 @@ section {
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: space-around;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 20px;
 }
 
 .containerProducts h1 {

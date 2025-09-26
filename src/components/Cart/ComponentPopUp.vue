@@ -82,23 +82,23 @@ const input = () => {
         cep.value != '' &&
         cep.value.length === 9 &&
         formData.value.endereco.rua != '' &&
-            formData.value.endereco.bairro != '' &&
-            formData.value.endereco.cidade != '' &&
-            formData.value.endereco.numero != 0 &&
-            formData.value.endereco.numero > 0
+        formData.value.endereco.bairro != '' &&
+        formData.value.endereco.cidade != '' &&
+        formData.value.endereco.numero != 0 &&
+        formData.value.endereco.numero > 0
     ) {
-    infoStore.setEndereco(
-        cep.value,
-        formData.value.endereco.rua,
-        formData.value.endereco.numero,
-        formData.value.endereco.complemento,
-        formData.value.endereco.bairro,
-        formData.value.endereco.cidade,
-    )
-    next.value = true
-} else {
-    next.value = false
-}
+        infoStore.setEndereco(
+            cep.value,
+            formData.value.endereco.rua,
+            formData.value.endereco.numero,
+            formData.value.endereco.complemento,
+            formData.value.endereco.bairro,
+            formData.value.endereco.cidade,
+        )
+        next.value = true
+    } else {
+        next.value = false
+    }
 }
 
 // PREPARANDO A MENSAGEM E FINALIZANDO
@@ -110,12 +110,9 @@ const finish = () => {
     const info = infoStore.getInfo
 
     // MONTANDO A LISTA DE PRODUTOS
-    const listaProdutos = produtos.map((p) => `- ${p.title}`).join('\n')
+    const listaProdutos = produtos.map((p) => `- ${p.title} x ${p.quant}`).join('\n')
     // MONTANDO A MENSAGEM FINAL
     const mensagem = `
-*Produtos escolhidos*
-${listaProdutos}
-
 *Informações do cliente*:
   *Nome:* ${info.nome}
   *Telefone:* ${info.telefone}
@@ -126,13 +123,16 @@ ${listaProdutos}
   *Complemento:* ${info.endereco.complemento != '' ? info.endereco.complemento : 'nenhum'}
   *Bairro:* ${info.endereco.bairro}
   *Cidade:* ${info.endereco.cidade}
+
+  *Produtos escolhidos*
+${listaProdutos}
   `
 
     // const telefone = '5511910092398'
     const telefone = '5511949335503'
     const url = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`
 
-    window.open(url, '_blank')
+    window.open(url, '_blank');
 }
 
 </script>

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import useCarrinhoStore from '@/stores/carrinhoStore';
 const carrinhoStore = useCarrinhoStore();
 const emit = defineEmits(['produtoStatus']);
@@ -16,36 +16,56 @@ interface Props {
 
 const props = defineProps<Props>();
 
+
 // CONFIGURAÇÔES DE CLIQUE E SELECIONAR O PRODUTO
 const inputSelect = ref<HTMLInputElement | null>(null);
 const select = ref(props.checked);
 
 // VERIFICAR se O PRODUTO FOI SELECIONADO OU NÂO
-const btnStatus = () => {
+const selectProduct = () => {
+    console.log('Click Card', select.value);
     if (select.value == false) {
         // SE ELE NÃO TIVER SIDO SELECIONADO
         if (inputSelect.value) {
-            carrinhoStore.setProduto(props.id, props.idCategoria, props.title, props.price, props.image)
+            carrinhoStore.setProduto(props.id, props.idCategoria, props.title, props.price, props.image);
             select.value = !select.value;
-            inputSelect.value.checked = true
-            emit('produtoStatus','Produto adicionado ao carrinho');
+            inputSelect.value.checked = true;
+            emit('produtoStatus', 'Produto adicionado ao carrinho');
         }
     } else {
         if (inputSelect.value) {
             carrinhoStore.removerProduto(props.id);
             select.value = false;
             inputSelect.value.checked = false
-            emit('produtoStatus','Produto removido do carrinho');
+            emit('produtoStatus', 'Produto removido do carrinho');
         }
     }
+}
 
+const btnStatus = () => {
+    console.log("Click btn", select.value)
+    if (select.value == false) {
+        if (inputSelect.value) {
+            carrinhoStore.setProduto(props.id, props.idCategoria, props.title, props.price, props.image);
+            select.value = !select.value;
+            inputSelect.value.checked = true;
+            emit('produtoStatus', 'Produto adicionado ao carrinho');
+        }
+    } else {
+        if (inputSelect.value) {
+            carrinhoStore.removerProduto(props.id);
+            select.value = false;
+            inputSelect.value.checked = false
+            emit('produtoStatus', 'Produto removido do carrinho');
+        }
+    }
 }
 </script>
 
 <template>
     <label :for="'cardProduct' + props.id" :class="props.fundo">
-        <input type="checkbox" :id="'cardProduct' + props.id" :name="'cardProduct' + props.id" @input="btnStatus"
-            ref="inputSelect" :checked="props.checked">
+        <input type="checkbox" :id="'cardProduct' + props.id" :name="'cardProduct' + props.id" @input="selectProduct"
+            ref="inputSelect" :checked="select">
         <div class="containerProduct">
             <img :src="props.image" alt="">
             <div class="containerInfo">
@@ -56,7 +76,7 @@ const btnStatus = () => {
                     }).format(props.price) }}
                     </span>
                 </div>
-                <button class="btnStatus" @click="btnStatus">
+                <div class="btnStatus">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" v-if="select == false">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -77,7 +97,7 @@ const btnStatus = () => {
                             </g>
                         </g>
                     </svg>
-                </button>
+                </div>
             </div>
         </div>
     </label>
@@ -107,6 +127,7 @@ input[type="checkbox"]:checked+.containerProduct {
     outline: 2px solid var(--contorno);
 }
 
+
 .b1 .containerProduct,
 .b2 .containerProduct {
     width: 150px;
@@ -119,6 +140,7 @@ input[type="checkbox"]:checked+.containerProduct {
     flex-direction: column;
     padding: 5px;
     gap: 10px;
+    position: relative;
 }
 
 .containerProduct img {
@@ -126,6 +148,7 @@ input[type="checkbox"]:checked+.containerProduct {
     height: 120px;
     max-height: 80%;
     border-radius: 5px;
+    object-fit: cover;
 }
 
 .containerInfo {
@@ -135,7 +158,7 @@ input[type="checkbox"]:checked+.containerProduct {
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
-
+    position: relative;
 }
 
 .containerTitle {
@@ -145,6 +168,7 @@ input[type="checkbox"]:checked+.containerProduct {
     white-space: normal;
     overflow-wrap: break-word;
     word-break: break-word;
+    position: relative;
 
 }
 
@@ -173,6 +197,12 @@ input[type="checkbox"]:checked+.containerProduct {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+
 }
 
 .btnStatus svg {

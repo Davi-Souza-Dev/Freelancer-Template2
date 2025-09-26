@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { onMounted, ref } from 'vue';
 import useCarrinhoStore from '@/stores/carrinhoStore';
 const carrinhoStore = useCarrinhoStore();
 const emit = defineEmits(['removerProduto']);
@@ -8,19 +9,67 @@ interface Props {
     price: number;
     image: string;
     fundo: string,
+    quant: number,
 }
 
 const props = defineProps<Props>();
+const quant = ref(1);
+onMounted(() => {
+    quant.value = props.quant;
+    if (props.quant < 1) {
+        quant.value = 1;
+    }
+})
 
 const removerProduto = () => {
-    emit('removerProduto', props.id ,'Produto removido do carrinho');
+    emit('removerProduto', props.id, 'Produto removido do carrinho');
+}
 
+// ADICIONAR QUANTIDADE
+const btnAddQuant = () => {
+    quant.value++;
+    if (quant.value >= 100) {
+        quant.value = 100;
+    }
+
+    carrinhoStore.setQuant(props.id, quant.value);
+}
+
+// REMOVER QUANTIDADE=
+const btnRemoveQuant = () => {
+
+    if (quant.value >= 1) {
+        quant.value--;
+        carrinhoStore.setQuant(props.id, quant.value);
+    }
+
+    if (quant.value == 0) {
+        emit('removerProduto', props.id, 'Produto removido do carrinho');
+    }
+
+}
+
+
+const inputQuant = () => {
+    if (quant.value >= 100) {
+        quant.value = 100;
+    }
+
+    if (quant.value >= 100) {
+        quant.value = 100;
+    }
+
+    if (quant.value === null || isNaN(quant.value)) {
+        quant.value = 1;
+    }
+
+    carrinhoStore.setQuant(props.id, quant.value);
 }
 </script>
 
 <template>
     <div class="containerCard" :class="fundo">
-        <img src="" alt="">
+        <img :src="image">
         <div class="containerInfo">
             <h1 class="title">{{ props.title }}</h1>
             <p class="price">
@@ -28,21 +77,58 @@ const removerProduto = () => {
                     style: 'currency', currency: 'BRL'
                 }).format(props.price) }}
             </p>
+            <div class="containerQuant">
+                <button class="btnAdd" @click="btnAddQuant">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="var(--contorno)">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+                            <title></title>
+                            <g id="Complete">
+                                <g data-name="add" id="add-2">
+                                    <g>
+                                        <line fill="none" stroke="var(--contorno)" stroke-linecap="round"
+                                            stroke-linejoin="round" stroke-width="2" x1="12" x2="12" y1="19" y2="5">
+                                        </line>
+                                        <line fill="none" stroke="var(--contorno)" stroke-linecap="round"
+                                            stroke-linejoin="round" stroke-width="2" x1="5" x2="19" y1="12" y2="12">
+                                        </line>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </button>
+                <input type="number" id="numQuant" name="numQuant" @input="inputQuant" min="1" max="100"
+                    v-model.number="quant">
+                <button class="btnRemove" @click="btnRemoveQuant">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+                            <path d="M7 12L17 12" stroke="var(--contorno)" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"></path>
+                        </g>
+                    </svg>
+                </button>
+            </div>
             <button class="btnDelete" @click="removerProduto">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                     <g id="SVGRepo_iconCarrier">
-                        <path d="M10 12V17" stroke="#000000" stroke-width="2" stroke-linecap="round"
+                        <path d="M10 12V17" stroke="var(--contorno)" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round"></path>
-                        <path d="M14 12V17" stroke="#000000" stroke-width="2" stroke-linecap="round"
+                        <path d="M14 12V17" stroke="var(--contorno)" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round"></path>
-                        <path d="M4 7H20" stroke="#000000" stroke-width="2" stroke-linecap="round"
+                        <path d="M4 7H20" stroke="var(--contorno)" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round"></path>
-                        <path d="M6 10V18C6 19.6569 7.34315 21 9 21H15C16.6569 21 18 19.6569 18 18V10" stroke="#000000"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                        <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#000000"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M6 10V18C6 19.6569 7.34315 21 9 21H15C16.6569 21 18 19.6569 18 18V10"
+                            stroke="var(--contorno)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        </path>
+                        <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z"
+                            stroke="var(--contorno)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        </path>
                     </g>
                 </svg>
             </button>
@@ -104,6 +190,63 @@ const removerProduto = () => {
 .containerInfo .price {
     font-size: 1rem;
     font-weight: 700;
+}
+
+.containerInfo .containerQuant {
+    width: 100px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    position: absolute;
+    bottom: 0;
+    right: 40px;
+}
+
+
+.containerQuant button {
+    width: 20px;
+    height: 20px;
+    outline: 2px solid var(--contorno);
+    background: var(--fundo);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.containerQuant button svg {
+    width: 80%;
+    height: 80%;
+}
+
+.btnAdd {
+    border-radius: 5px 0px 0px 5px;
+}
+
+.btnRemove {
+    border-radius: 0px 5px 5px 0px;
+}
+
+.containerQuant input {
+    width: 40px;
+    height: 100%;
+    text-align: center;
+    border: none;
+    outline: 2px solid var(--contorno);
+    font-family: var(--font);
+    font-weight: bolder;
+    color: var(--contorno);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
 }
 
 .containerInfo .btnDelete {

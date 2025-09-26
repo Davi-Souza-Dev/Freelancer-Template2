@@ -43,6 +43,7 @@ const props = defineProps<Props>();
     border-radius: 10px;
     padding: 5px 10px;
     animation: pulsate-fwd 0.5s ease-in-out infinite both;
+    z-index: 100;
 
 }
 

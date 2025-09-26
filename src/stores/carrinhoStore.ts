@@ -5,7 +5,8 @@ interface Produto {
   idCategoria: number,
   title: string,
   price: number,
-  image: string
+  image: string,
+  quant:number,
 }
 
 const useCarrinhoStore = defineStore('carrinho', {
@@ -18,7 +19,7 @@ const useCarrinhoStore = defineStore('carrinho', {
     getTotal: (state) =>{
         let total = 0; 
         state.produtos.map((produto)=>{
-          total += produto.price;
+          total += produto.price * produto.quant;
         })
         return total;
     }
@@ -33,6 +34,7 @@ const useCarrinhoStore = defineStore('carrinho', {
           title,
           price,
           image,
+          quant: 1
         }
         this.produtos.push(produto)
       }
@@ -40,6 +42,13 @@ const useCarrinhoStore = defineStore('carrinho', {
     removerProduto(id: number) {
       this.produtos = this.produtos.filter((p) => p.id !== id)
     },
+    setQuant(id:number,quant:number){
+      this.produtos.map((p)=>{
+        if(p.id === id){
+          p.quant = quant
+        }
+      })
+    }
   },
   persist: {
     storage: sessionStorage,
