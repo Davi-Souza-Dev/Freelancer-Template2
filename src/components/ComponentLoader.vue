@@ -15,7 +15,6 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -24,7 +23,7 @@
   text-align: center;
   font-family: var(--font);
   text-transform: uppercase;
-  font-size: 0.9rem;
+  font-size: 1rem;
   gap: 10px;
   font-weight: 900;
   color: var(--color1);

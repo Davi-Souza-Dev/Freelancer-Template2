@@ -59,7 +59,7 @@ const inputQuant = () => {
         quant.value = 100;
     }
 
-    if (quant.value === null || isNaN(quant.value)) {
+    if (quant.value === null || isNaN(quant.value) || quant.value == ""){
         quant.value = 1;
     }
 

@@ -3,11 +3,14 @@ import Button from '@/components/ComponentButtonFinal.vue';
 import ButtonBack from '@/components/ComponentButtonBack.vue';
 import Loader from '@/components/ComponentLoader.vue'
 
-import { onBeforeMount, onMounted, ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 import useInfoStore from '@/stores/infoStore'
 import { MaskInput } from 'vue-3-mask'
 import useCarrinhoStore from '@/stores/carrinhoStore'
 
+import Notification from '@/components/ComponentNotification.vue';
+const showNotification = ref(false);
+const noticationMsg = ref('');
 import axios from 'axios'
 const carrinho = useCarrinhoStore()
 const infoStore = useInfoStore()
@@ -24,7 +27,7 @@ const formData = ref({
     }
 });
 const loading = ref(false)
-const next = ref(false)
+const next = ref(true)
 const cep = ref('')
 
 // PEGANDO OS DADOS JÁ ARMAZENADOS SE TIVER
@@ -95,14 +98,29 @@ const input = () => {
             formData.value.endereco.bairro,
             formData.value.endereco.cidade,
         )
-        next.value = true
-    } else {
-        next.value = false
     }
 }
 
 // PREPARANDO A MENSAGEM E FINALIZANDO
 const finish = () => {
+    if (
+        formData.value.nome === '' ||
+        formData.value.telefone === '' ||
+        cep.value === '' ||
+        cep.value.length !== 9 ||
+        formData.value.endereco.rua === '' ||
+        formData.value.endereco.bairro === '' ||
+        formData.value.endereco.cidade === '' ||
+        formData.value.endereco.numero <= 0
+    ) {
+        showNotification.value = true;
+        noticationMsg.value = "Preencha todos os dados para continuar!";
+        setTimeout(() => {
+            showNotification.value = false;
+        }, 2000);
+        return;
+    }
+
     // PEGANDO PRODUTOS DO CARRINHO
     const produtos = carrinho.getProdutos
 
@@ -111,6 +129,7 @@ const finish = () => {
 
     // MONTANDO A LISTA DE PRODUTOS
     const listaProdutos = produtos.map((p) => `- ${p.title} x ${p.quant}`).join('\n')
+
     // MONTANDO A MENSAGEM FINAL
     const mensagem = `
 *Informações do cliente*:
@@ -128,7 +147,6 @@ const finish = () => {
 ${listaProdutos}
   `
 
-    // const telefone = '5511910092398'
     const telefone = '5511949335503'
     const url = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`
 
@@ -141,6 +159,7 @@ ${listaProdutos}
 <template>
     <div class="background">
         <Loader v-show="loading" />
+        <Notification :msg="noticationMsg" v-show="showNotification" />
         <div class="containerPopup">
             <div class="containerInfo">
                 <h1>Informações</h1>
@@ -183,7 +202,7 @@ ${listaProdutos}
                                 </svg>
                             </div>
                             <MaskInput mask="(##) #####-####" id="numTel" v-model="formData.telefone" @input="input"
-                                name="numTel" placeholder="(99) 9999-9999" />
+                                name="numTel" placeholder="(99) 9999-9999" :value="formData.telefone" />
                         </div>
                     </div>
                 </div>
@@ -208,8 +227,8 @@ ${listaProdutos}
                                     </g>
                                 </svg>
                             </div>
-                            <input type="text" name="numCep" v-model="cep" @keyup="formatCep" maxlength="9"
-                                placeholder="00000-000" />
+                            <MaskInput name="numCep" v-model="cep" @keyup="formatCep" maxlength="9"
+                                placeholder="00000-000" mask="#####-###" :value="cep" />
                         </div>
                     </div>
                 </div>

@@ -27,7 +27,7 @@ const props = defineProps<Props>();
 
 <style lang="css" scoped>
 .containerNotification {
-    min-width: 150px;
+    width: 150px;
     width: fit-content;
     display: flex;
     align-items: center;
@@ -82,8 +82,8 @@ const props = defineProps<Props>();
 }
 
 .containerNotification .containerIcon {
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -96,7 +96,7 @@ const props = defineProps<Props>();
 .containerNotification span {
     font-family: var(--font);
     font-weight: 900;
-    font-size: 1rem;
+    font-size: 0.8rem;
     color: var(--color1);
     text-transform: capitalize;
 }
